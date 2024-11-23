@@ -27,6 +27,7 @@ The LCD is cleared and updated with the new count of people in the room whenever
 
 Key Components:
 LiquidCrystal_I2C: This library is used to interface with the LCD over I2C communication, allowing the Arduino to control the display efficiently using only two pins.
+
 Input Pins: The in and out sensors are assumed to detect whether someone is entering or leaving the room, triggering a change in the count.
 
 
