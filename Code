@@ -1,0 +1,52 @@
+#include<Wire.h>
+#include<LCD.h>
+#include<LiquidCrystal_I2C.h>
+LiquidCrystal_I2C lcd(0x3F, 2, 1,0, 4, 5, 6 , 7, 3, POSITIVE);
+
+#define out 7
+#define in 8
+
+int count = 0;
+
+void setup ()
+{
+  lcd.begin(16,2);
+  lcd.clear();
+  lcd.print("Counter: ");
+  delay(3000);
+  pinMode (in, INPUT) ;// define the obstacle avoidance sensor output interface
+  pinMode (out, INPUT) ;
+ 
+  lcd.clear();
+  lcd.print("Person In Room:");
+  lcd.setCursor(0,1);
+  lcd.print(count);
+}
+ 
+void loop ()
+{
+  if(digitalRead(in)==LOW)
+  {
+      count++;
+      lcd.clear();
+    lcd.print("Person In Room:");
+    lcd.setCursor(0,1);
+    lcd.print(count);
+    delay(2000);
+   
+  }
+  if(digitalRead(out)==LOW)
+  {
+    if(count>0)
+    {
+      count--;
+    }
+    lcd.clear();
+    lcd.print("Person In Room:");
+    lcd.setCursor(0,1);
+    lcd.print(count);
+    delay(2000);
+  }
+ 
+}
+
